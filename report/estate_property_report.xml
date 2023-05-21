@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="proparty_print_badge" model="ir.actions.report">
+        <field name="name">Property Print Badge</field>
+        <field name="model">estate.property</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">estate.estate_property_report</field>
+        <field name="report_file">estate.estate_property_report</field>
+        <field name="binding_model_id" ref="model_estate_property" />
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="estate_property_report">
+
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t t-foreach="docs" t-as="doc">
+                <!-- <header>
+                    <p>mmm</p>
+                </header> -->
+                    <div class="page">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h2 style="border-bottom: none;">
+                                    <span t-field="doc.name" />
+                                </h2>
+                                <table class="table table-condensed">
+                                    <style>
+                                    <![CDATA[
+                                    .table th {
+                                        text-align: left;
+                                    }
+                                    ]]>
+                                </style>
+                                    <tbody>
+                                        <tr>
+                                            <th>Salesperson:</th>
+                                            <td>
+                                                <span t-field="doc.sales_person" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Expected Price:</th>
+                                            <td>
+                                                <span t-field="doc.expected_price" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>State:</th>
+                                            <td>
+                                                <span t-field="doc.states1" />
+                                            </td>
+                                        </tr>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h2
+                                    style="font-size: 24px; font-weight: bold; margin-bottom: 20px; border-bottom: 1px solid black;">
+                                    Offers</h2>
+                                <t t-if="len(doc.offer_ids) >= 1">
+                                     <t t-call="estate.estate_offer_table" />
+                                </t>
+                                <t t-if="len(doc.offer_ids) == 0">
+                                    <p>No offers yet.</p>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+
+    </template>
+    <template id="estate_offer_table">
+        <table class="table table-condensed" id="offers-table"
+            style="line-height: 1.5;">
+            <style>
+                            <![CDATA[#offers-table, #offers-table th, #offers-table td {
+                                    border: 1px solid black;
+                                    border-collapse:collapse ;
+                                    width:100%
+                                  }
+                                    #offers-table th:nth-child(1),
+                                    #offers-table td:nth-child(1) {
+                                        width: 20%;
+                                    }
+                                    #offers-table th:nth-child(2),
+                                    #offers-table td:nth-child(2) {
+                                        width: 20%;
+                                    }
+                                    #offers-table th:nth-child(3),
+                                    #offers-table td:nth-child(3) {
+                                        width: 20%;
+                                    }
+                                    #offers-table th:nth-child(4),
+                                    #offers-table td:nth-child(4) {
+                                        width: 20%;
+                                    }
+                                    #offers-table th:nth-child(5),
+                                    #offers-table td:nth-child(5) {
+                                        width: 20%;
+                                    }]]>
+                                </style>
+            <thead>
+                <tr>
+                    <th>Price</th>
+                    <th>Partner</th>
+                    <th>Validity</th>
+                    <th>Deadline</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <t t-foreach="doc.offer_ids" t-as="offer">
+                    <tr>
+                        <td>
+                            <span t-field="offer.price" />
+                        </td>
+                        <td>
+                            <span t-field="offer.partner_id" />
+                        </td>
+                        <td>
+                            <span t-field="offer.validity" />
+                        </td>
+                        <td>
+                            <span t-field="offer.date_deadline" />
+                        </td>
+                        <td>
+                            <span t-field="offer.status" />
+                        </td>
+
+
+                    </tr>
+                </t>
+            </tbody>
+        </table>
+    </template>
+
+    
+</odoo>

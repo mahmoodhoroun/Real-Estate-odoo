@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+
+    <record id="estate_property_type_action" model="ir.actions.act_window">
+        <field name="name">Property Type</field>
+        <field name="res_model">estate.property.type</field>
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+    <record id="estate_property_type_view_form1" model="ir.ui.view">
+        <field name="name">estate.property.type.form</field>
+        <field name="model">estate.property.type</field>
+        <field name="arch" type="xml">
+            <form>
+
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button type="action" name="%(estate.estate_property_offer_action)d"
+                            string="View Offers" class="oe_stat_button" icon="fa-money">
+                            <field name="offer_count" />
+                        </button>
+                    </div>
+
+
+                    <h1 style="width:200px">
+                        <field name="name" string="Title" />
+                    </h1>
+                    <field name="sequence" widget="handle" />
+                    <notebook>
+                        <page string="Proparatis">
+                            <field name="properties">
+                                <tree>
+
+                                    <field name="name" />
+                                    <field name="expected_price" />
+                                    <field name="states1" />
+
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="estate_property_type_tree" model="ir.ui.view">
+        <field name="name">estate.property.type.tree</field>
+        <field name="model">estate.property.type</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" widget="handle" />
+
+                <field name="name" />
+                <field name="offer_count" />
+
+            </tree>
+        </field>
+    </record>
+
+
+</odoo>

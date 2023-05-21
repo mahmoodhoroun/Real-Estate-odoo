@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- Extend base.view_users_form -->
+        <record id="view_users_form_inherit1" model="ir.ui.view">
+            <field name="name">users.view.form.inherit</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <!-- Add new notebook page -->
+                <xpath expr="//notebook" position="inside">
+                    <page string="Real Estate Properties">
+                        <field name="property_ids">
+                            <!-- Add any additional attributes or customization -->
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
